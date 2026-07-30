@@ -1,22 +1,77 @@
 aid: kuli
 name: Kuli
-description: Kuli is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Kuli is an AI agent for influencer marketing, built for consumer brands. It runs the full creator
+  marketing lifecycle end to end — discovery, vetting, outreach, and reporting — so a small marketing team ships
+  like a much larger one. Unlike platforms that filter creators on metadata such as follower counts and engagement
+  rates, Kuli's agent watches actual creator videos frame by frame across TikTok and Instagram, assessing brand
+  safety, content style, audience signals, and brand fit, then drafts personalized outreach in the brand's own
+  voice and reports campaign ROI on a schedule. Founded in 2025 and headquartered in Levallois-Perret, Paris,
+  Kuli is a Y Combinator company. As of this profile Kuli publishes no public API, developer portal, or SDKs —
+  its only machine-readable surface is an llms.txt.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://framerusercontent.com/assets/aUo3Rkr9XBqPsT5tjDnjU2NPzI.png
 url: https://raw.githubusercontent.com/api-evangelist/kuli/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: portfolio-lead-no-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
+- Influencer Marketing
+- Marketing
+- Artificial Intelligence
+- Creator Economy
+- Brand Safety
+- Video Analysis
+- Social Media
 apis: []
+common:
+- type: DomainSecurity
+  url: security/kuli-domain-security.yml
+- type: Website
+  url: https://kuli.one
+- type: About
+  url: https://kuli.one/about
+- type: Blog
+  url: https://kuli.one/blog
+- type: Contact
+  url: https://kuli.one/contact
+- type: Support
+  url: https://kuli.one/contact
+- type: TermsOfService
+  url: https://kuli.one/termsandconditions
+- type: PrivacyPolicy
+  url: https://kuli.one/privacy-policy
+- type: LinkedIn
+  url: https://www.linkedin.com/company/kuliai
+- type: Glossary
+  url: https://kuli.one/glossary
+- type: Tools
+  url: https://kuli.one/tools
+- type: LlmsText
+  url: llms/kuli-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

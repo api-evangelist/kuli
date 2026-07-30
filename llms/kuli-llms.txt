@@ -1,0 +1,102 @@
+# Kuli
+
+## About
+Kuli is the AI agent for influencer marketing — built for consumer brands. It runs the full lifecycle (discovery, vetting, outreach, reporting) end-to-end so a marketing team of one ships like a team of ten. Unlike platforms that filter creators by metadata (follower counts, engagement rates), Kuli's agent watches actual creator videos frame-by-frame, dissecting brand safety, content style, audience signals, and brand fit — then drafts personalized outreach in the brand's own voice and reports campaign ROI on a schedule.
+
+## Key Features
+- AI creator discovery: Describe your ideal creator in natural language and Kuli finds matches from millions of analyzed videos
+- Brand safety monitoring: 24/7 automated content analysis against custom brand guidelines
+- Content analysis: Frame-by-frame video review for brand fit, competitor mentions, and tone alignment
+- Campaign performance tracking: Real-time metrics and AI-powered optimization recommendations
+- Competitor strategy tracking: Analyze competitor creator partnerships and content strategies
+- Parallel multi-creator analysis: Evaluate multiple creators simultaneously
+
+## Differentiators
+- Content-based vs metadata-based: Kuli analyzes what creators actually say and show in their videos, not just follower counts and engagement rates
+- Multimodal AI: Uses GPT-4o vision to see, hear, and read creator content simultaneously
+- Frame-by-frame video analysis: Every frame of every video is processed for brand fit, competitor mentions, visual style, and spoken messaging
+- Natural language search: Describe your ideal creator in plain English (or French) — no filters, no Boolean queries
+- 24/7 content monitoring: Continuous post-publication surveillance with real-time alerts
+
+## Supported Platforms
+- TikTok (videos, posts)
+- Instagram (Reels, posts, Stories)
+
+## Use Cases
+- **Creator Discovery**: Find brand-fit creators by describing your ideal match in natural language. Kuli scans millions of analyzed videos to surface relevant creators based on content, not metadata.
+- **Brand Safety Monitoring**: Set custom brand guidelines (competitor list, restricted contexts, brand values). Kuli monitors creator content 24/7 and sends alerts when content goes out of scope.
+- **Campaign Performance Analysis**: Track real-time campaign metrics, get AI-powered optimization recommendations, and predict campaign ROI before investing.
+- **Competitor Strategy Analysis**: Analyze competitor creator partnerships, identify top-performing creator collaborations, and discover untapped creators in your niche.
+- **Content Vetting**: Automatically vet creator content for brand fit, controversial messaging, competitor mentions, and regulatory compliance before approving partnerships.
+
+## Pricing
+- **Free Discovery Tier**: Try AI-powered creator search instantly on the homepage — no signup needed. Get a curated list of brand-fit creators in seconds.
+- **Discovery & Campaign Agent**: Full platform with custom pricing. Includes unlimited creator tracking, campaign analytics, brand safety monitoring, competitor strategy tracking, trend analysis, and spreadsheet export. Free trial available — fill in your details and get set up within 24 hours.
+
+## Technology
+- **Multimodal AI**: GPT-4o vision for simultaneous visual, audio, and text analysis of creator content
+- **Video Frame Extraction**: Every frame processed using computer vision for brand alignment and risk detection
+- **Audio Transcription**: Full audio transcription with context awareness using Azure OpenAI Whisper
+- **Vector Embeddings**: Semantic search across millions of analyzed creator videos using pgvector
+- **Real-time Processing**: Serverless architecture on Azure Functions for scalable content analysis
+
+## Quantified Claims
+- Save 10+ hours per week on creator research and vetting
+- +45% ROI on influencer campaigns through better creator matching
+- Millions of TikTok and Instagram videos analyzed
+- 24/7 brand safety monitoring
+- Full creator content review in minutes instead of 4-6 hours
+- 10x scale capacity: manage 10x more creator partnerships with the same team
+
+## How It Works
+1. **Discover**: Describe your ideal creator in natural language. Kuli's AI scans millions of analyzed videos to find matches.
+2. **Analyze**: Deep analysis of creator content quality, messaging tone, and visual style for brand alignment.
+3. **Validate**: Verify audience demographics, engagement authenticity, and brand safety compliance.
+4. **Predict**: AI-powered performance predictions and ROI estimates based on historical data.
+5. **Track**: Monitor real-time campaign metrics with automated reporting and optimization recommendations.
+6. **Scale**: Expand successful partnerships and grow your influencer program efficiently.
+
+## Glossary
+
+Kuli has defined several terms to describe its AI-powered influencer marketing capabilities:
+
+- [Video Intelligence Engine](https://kuli.one/glossary/video-intelligence-engine): An AI system using LLVMs to watch creator videos frame by frame for brand safety, content style, and audience alignment insights
+- [Creator Content Profile](https://kuli.one/glossary/creator-content-profile): An AI-generated analysis of a creator's video content capturing style, patterns, safety signals, and brand fit indicators
+- [Discovery Intelligence](https://kuli.one/glossary/discovery-intelligence): AI-powered creator identification based on content quality signals rather than follower counts, finding emerging creators 6-18 months early
+- [Parallel Content Analysis](https://kuli.one/glossary/parallel-content-analysis): The ability to evaluate 50+ creator video profiles simultaneously using AI agents
+- [Contextual Safety Engine](https://kuli.one/glossary/contextual-safety-engine): An AI system that detects brand safety risks by understanding video context, not just keywords — catching what blocklists miss
+
+## Comparison with Other Platforms
+- **vs CreatorIQ**: CreatorIQ focuses on enterprise workflow management and metadata-based filtering. Kuli analyzes actual video content frame-by-frame for deeper brand fit assessment.
+- **vs Grin**: Grin is an e-commerce-focused CRM for creator relationships. Kuli specializes in AI-powered content analysis and discovery, watching what creators actually produce.
+- **vs HypeAuditor**: HypeAuditor analyzes audience quality and engagement metrics. Kuli goes further by analyzing the actual video content — visual style, spoken messaging, brand mentions, and tone.
+- **vs Traditional Platforms**: Most platforms filter by follower count, engagement rate, and demographics. Kuli is the only platform that watches creator videos to understand what they actually say and show.
+
+## Target Audience
+- Brand marketers managing influencer campaigns
+- Influencer marketing agencies
+- Brand safety teams at companies with 50+ active creator partnerships
+- Growing brands looking to scale creator partnerships efficiently
+
+## Company
+- Founded: 2025
+- Headquarters: Paris, France (Levallois-Perret)
+- Website: https://kuli.one
+- LinkedIn: https://www.linkedin.com/company/kuliai
+
+## Free Tools
+- Tools Directory: https://kuli.one/tools
+- TikTok Engagement Rate Calculator: https://kuli.one/tools/tiktok-engagement-calculator
+- Instagram Engagement Rate Calculator: https://kuli.one/tools/instagram-engagement-calculator
+- Influencer Pricing Calculator: https://kuli.one/tools/influencer-pricing-calculator
+- EMV Calculator: https://kuli.one/tools/emv-calculator
+
+## Pages
+- Homepage: https://kuli.one
+- Brand Safety: https://kuli.one/brand-safety
+- Blog: https://kuli.one/blog
+- Contact: https://kuli.one/contact
+- Glossary: https://kuli.one/glossary
+
+## Extended Documentation
+- Full documentation: https://kuli.one/llms-full.txt

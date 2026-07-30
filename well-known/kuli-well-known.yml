@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of kuli.one
+note: >-
+  Probed the standard /.well-known/ discovery surface on the single Kuli host.
+  kuli.one is a single-page application that serves its homepage HTML with an
+  HTTP 200 for every unmatched path, so raw status codes are not meaningful
+  here. Every probe below returned 200 with the 17,121-byte homepage document
+  (content-type text/html) rather than the requested artifact — confirmed
+  against a control request for a nonsense path, which returned the identical
+  response. These are therefore recorded as soft 404s: no /.well-known/
+  document is actually published. No WellKnown or SecurityTxt pointer is
+  emitted because nothing real was found.
+hosts:
+- host: https://kuli.one
+  soft_404: true
+  soft_404_evidence: >-
+    Control request to /definitely-not-a-real-path-zzz999 returned HTTP 200
+    with the same homepage HTML body as every probe below.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 200, result: soft-404, content_type: text/html}
+other_probes:
+- path: /llms.txt
+  status: 200
+  result: found
+  content_type: text/plain
+  bytes: 7767
+  file: ../llms/kuli-llms.txt
+- path: /sitemap.xml
+  status: 200
+  result: found
+  content_type: application/xml
+  bytes: 32017
+  note: 64 URLs, none of them developer, API, or documentation pages.
+- path: /openapi.json
+  status: 200
+  result: soft-404
+  content_type: text/html

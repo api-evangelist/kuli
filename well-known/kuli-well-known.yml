@@ -1,42 +1,174 @@
-generated: '2026-07-19'
-method: searched
-source: live probes of kuli.one
+generated: '2026-08-13'
+method: probed
+source: live probes of kuli.one, app.kuli.one, discovery.kuli.one and the Kuli Discovery backend host
 note: >-
-  Probed the standard /.well-known/ discovery surface on the single Kuli host.
-  kuli.one is a single-page application that serves its homepage HTML with an
-  HTTP 200 for every unmatched path, so raw status codes are not meaningful
-  here. Every probe below returned 200 with the 17,121-byte homepage document
-  (content-type text/html) rather than the requested artifact — confirmed
-  against a control request for a nonsense path, which returned the identical
-  response. These are therefore recorded as soft 404s: no /.well-known/
-  document is actually published. No WellKnown or SecurityTxt pointer is
-  emitted because nothing real was found.
+  Probed the standard /.well-known/ discovery surface on every Kuli host reachable
+  from public material. kuli.one is a Framer-hosted single-page site that answers
+  HTTP 200 with its 17,113-byte homepage document for every unmatched path, so raw
+  status codes there are not meaningful — every kuli.one probe below is a soft 404,
+  confirmed against a control request for a nonsense path that returned the identical
+  body. discovery.kuli.one behaves the same way with its own 3,737-byte SPA shell.
+  The one host that answers honestly is the Kuli Discovery backend (uvicorn/FastAPI),
+  which returns a real JSON 404 for every /.well-known/ path. No /.well-known/
+  document is published anywhere. No WellKnown and no SecurityTxt pointer is emitted,
+  because nothing real was found — this file records a verified absence, not a presence.
 hosts:
 - host: https://kuli.one
   soft_404: true
   soft_404_evidence: >-
-    Control request to /definitely-not-a-real-path-zzz999 returned HTTP 200
-    with the same homepage HTML body as every probe below.
+    Control request to /definitely-not-real-zzz999 returned HTTP 200 with the same
+    17,113-byte homepage HTML body (text/html) as every probe below.
   documents:
   - {path: /.well-known/security.txt, status: 200, result: soft-404, content_type: text/html}
   - {path: /.well-known/openid-configuration, status: 200, result: soft-404, content_type: text/html}
   - {path: /.well-known/oauth-authorization-server, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 200, result: soft-404, content_type: text/html}
   - {path: /.well-known/api-catalog, status: 200, result: soft-404, content_type: text/html}
   - {path: /.well-known/ai-plugin.json, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 200, result: soft-404, content_type: text/html}
+- host: https://app.kuli.one
+  note: >-
+    The product application. Cloudflare answers with a bot-challenge interstitial
+    (HTTP 403, "Just a moment...") for application paths. Every /.well-known/ path
+    301-redirects to https://discovery.kuli.one — a catch-all redirect, not a document.
+  documents:
+  - {path: /.well-known/agent-card.json, status: 301, result: redirect-to-discovery, location: https://discovery.kuli.one}
+  - {path: /.well-known/agent.json, status: 301, result: redirect-to-discovery, location: https://discovery.kuli.one}
+  - {path: /.well-known/security.txt, status: 301, result: redirect-to-discovery, location: https://discovery.kuli.one}
+  - {path: /.well-known/oauth-authorization-server, status: 301, result: redirect-to-discovery, location: https://discovery.kuli.one}
+- host: https://discovery.kuli.one
+  soft_404: true
+  soft_404_evidence: >-
+    Every /.well-known/ path returns HTTP 200 with the identical 3,737-byte React SPA
+    shell (title "Kuli Discovery", root div, module script tags) — a client-side
+    catch-all, not a document.
+  documents:
+  - {path: /.well-known/agent-card.json, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/security.txt, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 200, result: soft-404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 200, result: soft-404, content_type: text/html}
+  - {path: /llms.txt, status: 200, result: soft-404, content_type: text/html}
+- host: https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io
+  note: >-
+    The application backend behind discovery.kuli.one (server header "uvicorn";
+    FastAPI-shaped {"detail":"Not Found"} bodies). Honest 404s — no SPA catch-all.
+  documents:
+  - {path: /.well-known/agent-card.json, status: 404, result: not-found, content_type: application/json}
+  - {path: /.well-known/agent.json, status: 404, result: not-found, content_type: application/json}
+  - {path: /.well-known/security.txt, status: 404, result: not-found, content_type: application/json}
 other_probes:
-- path: /llms.txt
+- path: https://kuli.one/llms.txt
   status: 200
   result: found
   content_type: text/plain
   bytes: 7767
   file: ../llms/kuli-llms.txt
-- path: /sitemap.xml
+  note: Byte-identical to the copy harvested 2026-07-19 — unchanged in three weeks.
+- path: https://kuli.one/robots.txt
+  status: 200
+  result: found
+  content_type: text/plain
+  bytes: 431
+  note: >-
+    Explicitly allows GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot and
+    Google-Extended; only /admin/ is disallowed. Kuli opts agents IN.
+- path: https://kuli.one/sitemap.xml
   status: 200
   result: found
   content_type: application/xml
-  bytes: 32017
-  note: 64 URLs, none of them developer, API, or documentation pages.
-- path: /openapi.json
-  status: 200
-  result: soft-404
-  content_type: text/html
+  note: >-
+    66 URLs across English and French. Marketing, blog, glossary and calculator
+    pages only — no developer, API, documentation, changelog or pricing page.
+
+x-contract-discovery:
+  checked: '2026-08-13'
+  verdict: no-published-contract
+  summary: >-
+    STEP 0b run in full against every Kuli host. No OpenAPI, Swagger, GraphQL SDL,
+    AsyncAPI, MCP manifest or A2A agent card is published anywhere. A real HTTP API
+    does exist — the private backend for the Kuli Discovery application — but it
+    publishes no contract and is not offered to third-party developers.
+  hosts_probed:
+  - https://kuli.one
+  - https://app.kuli.one
+  - https://discovery.kuli.one
+  - https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io
+  subdomains_resolved:
+  - {host: app.kuli.one, dns: true, status: 403, note: Cloudflare bot challenge}
+  - {host: discovery.kuli.one, dns: true, status: 403, note: Cloudflare bot challenge on app paths}
+  - {host: www.kuli.one, dns: true, status: 301, note: redirects to https://kuli.one/}
+  - {host: api.kuli.one, dns: false}
+  - {host: developer.kuli.one, dns: false}
+  - {host: developers.kuli.one, dns: false}
+  - {host: docs.kuli.one, dns: false}
+  - {host: mcp.kuli.one, dns: false}
+  - {host: platform.kuli.one, dns: false}
+  - {host: dashboard.kuli.one, dns: false}
+  rest_openapi:
+    found: false
+    probes:
+    - {url: 'https://kuli.one/openapi.json', status: 200, result: soft-404-html}
+    - {url: 'https://kuli.one/openapi.yaml', status: 200, result: soft-404-html}
+    - {url: 'https://kuli.one/swagger.json', status: 200, result: soft-404-html}
+    - {url: 'https://kuli.one/api-docs', status: 200, result: soft-404-html}
+    - {url: 'https://kuli.one/docs', status: 200, result: soft-404-html}
+    - {url: 'https://kuli.one/redoc', status: 200, result: soft-404-html}
+    - {url: 'https://discovery.kuli.one/openapi.json', status: 403, result: bot-challenge}
+    - {url: 'https://discovery.kuli.one/api/openapi.json', status: 403, result: bot-challenge}
+    - {url: 'https://app.kuli.one/openapi.json', status: 403, result: bot-challenge}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/openapi.json', status: 404}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/docs', status: 404}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/redoc', status: 404}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/api/openapi.json', status: 404}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/api/v1/openapi.json', status: 404}
+    note: >-
+      The backend is FastAPI (server: uvicorn) and FastAPI serves /openapi.json,
+      /docs and /redoc by default — all three return a genuine JSON 404 here, so the
+      automatic documentation has been deliberately disabled in production. The spec
+      exists inside the application; it is simply not published.
+  graphql:
+    found: false
+    probes:
+    - {url: 'https://kuli.one/graphql', status: 200, result: soft-404-html}
+    note: No GraphQL surface referenced anywhere in the site, the llms.txt, or the application bundles.
+  mcp:
+    found: false
+    probes:
+    - {url: 'https://kuli.one/mcp', status: 200, result: soft-404-html}
+    - {url: 'https://discovery.kuli.one/mcp', status: 403, result: bot-challenge}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/mcp', status: 404}
+    note: No hosted MCP server; no first-party MCP package on npm or PyPI.
+  a2a_agent_card:
+    found: false
+    note: >-
+      Both the canonical /.well-known/agent-card.json and the legacy
+      /.well-known/agent.json were probed on all four hosts. Every 200 was an
+      HTML SPA shell (rejected per the pipeline's false-positive rule) and every
+      honest response was a 404. NO agent card artifact was written.
+  private_api_observed:
+    is_public_api: false
+    base_url: https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io
+    self_identifies_as: '{"message":"Welcome to Kuli Discovery API"}'
+    server: uvicorn
+    ownership_evidence: >-
+      Referenced as the API base by Kuli's own first-party JavaScript bundle at
+      https://discovery.kuli.one/assets/api-Dflo1hZ1.js — the only absolute URL in
+      that module — and the host name is kuli-discovery-backend-prod. The root
+      document names itself "Kuli Discovery API".
+    auth: >-
+      Bearer token (Supabase-issued session, per the bundled supabase module).
+      Unauthenticated requests return HTTP 401 {"detail":"Authorization header missing"}.
+    evidence:
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/', status: 200}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/api/settings/profile', status: 401}
+    - {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/api/settings/team', status: 401}
+    why_not_catalogued: >-
+      This is the Kuli Discovery web application's own backend, not a product Kuli
+      offers to developers: there is no developer portal, no documentation, no key
+      issuance, no terms covering API use, and the automatic OpenAPI is switched off.
+      No apis[] entry and no baseURL is recorded from it, and no specification was
+      reconstructed from the minified application bundles — that would be fabrication.
+      It is recorded here only as evidence that the absence of a contract is a
+      publishing choice rather than an absence of an API.

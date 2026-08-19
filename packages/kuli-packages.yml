@@ -1,0 +1,21 @@
+generated: '2026-08-13'
+method: searched
+source: public package-registry searches
+package_count: 0
+official_count: 0
+packages: []
+note: >-
+  No first-party Kuli client library exists on any public registry. Searched npm
+  (both the "kuli" name space and the "kuli influencer" text search), PyPI, and the
+  GitHub organization space. Nothing returned is Kuli's: the npm hits for
+  "kuli influencer" are unrelated third-party scrapers and agent frameworks, and the
+  only npm package carrying the string is @kuldi/create-nestjs, a boilerplate from an
+  unrelated "Kuli Digital". No SDKs pointer is emitted, because there is no SDK — and
+  none would be expected, since Kuli publishes no API for one to wrap.
+registries_searched:
+- {registry: npm, query: 'https://registry.npmjs.org/-/v1/search?text=kuli%20influencer', status: 200, first_party_hits: 0}
+- {registry: pypi, query: 'https://pypi.org/pypi/kuli/json', status: 404, first_party_hits: 0}
+- {registry: github, query: 'https://api.github.com/orgs/kuli', status: 404}
+- {registry: github, query: 'https://api.github.com/orgs/kuli-ai', status: 404}
+- {registry: github, query: 'https://api.github.com/orgs/kuli-one', status: 404}
+- {registry: github, query: 'https://api.github.com/orgs/kuliai', status: 200, note: 'org exists but is empty — 0 public repos, no name, no description, no blog URL, created 2024-08-19. Ownership by this Kuli (founded 2025, kuli.one) cannot be proven, so no GitHubOrganization pointer is emitted.'}

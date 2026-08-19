@@ -1,0 +1,36 @@
+generated: '2026-08-13'
+method: searched
+source: https://kuli.one/llms.txt
+searched:
+- {url: 'https://kuli.one/sitemap.xml', status: 200, note: '66 URLs, no /pricing or /plans page in either the English or French tree'}
+- {url: 'https://kuli.one/', status: 200, note: 'Homepage carries no pricing section; the single commercial CTA is "Schedule a Demo"'}
+- {url: 'https://kuli.one/llms.txt', status: 200, note: 'Names two tiers, neither with a price'}
+plan_count: 0
+pricing_model: contact-sales
+currency: null
+note: >-
+  Kuli publishes no pricing page and no priced plan. Its sitemap has no /pricing or
+  /plans URL in either language tree, its homepage has no pricing section, and the only
+  commercial call to action anywhere on the marketing site is a Calendly demo booking
+  (https://calendly.com/jonathan-kuli/30min). The llms.txt does name two commercial
+  tiers, recorded below as named_tiers, but attaches no price, currency, billing period,
+  quota or overage to either — so plan_count is an honest 0 rather than 2: nothing on
+  this surface is a published plan a buyer could price. No API pricing exists at all,
+  because Kuli publishes no API (see well-known/kuli-well-known.yml x-contract-discovery).
+named_tiers:
+- name: Free Discovery Tier
+  price: null
+  billing_period: null
+  source: https://kuli.one/llms.txt
+  description: >-
+    AI-powered creator search tried directly on the homepage with no signup, returning
+    a curated list of brand-fit creators. A product trial, not a subscribed plan.
+- name: Discovery & Campaign Agent
+  price: null
+  billing_period: null
+  pricing: custom
+  source: https://kuli.one/llms.txt
+  description: >-
+    Full platform — unlimited creator tracking, campaign analytics, brand safety
+    monitoring, competitor strategy tracking, trend analysis, spreadsheet export.
+    llms.txt states "custom pricing" and a free trial arranged within 24 hours.

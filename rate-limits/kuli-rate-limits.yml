@@ -1,0 +1,19 @@
+generated: '2026-08-13'
+method: searched
+source: https://kuli.one/sitemap.xml
+limit_count: 0
+note: >-
+  No rate limits are documented, because Kuli documents no API. There is no developer
+  portal, no API reference and no docs host (developer/developers/docs/api subdomains
+  of kuli.one do not resolve), so there is no page on which a limit could be published.
+  The one HTTP API that exists — the private backend for the Kuli Discovery application
+  — returns HTTP 401 to any unauthenticated request and emits no RateLimit-*,
+  X-RateLimit-* or Retry-After header on the responses that can be observed anonymously.
+  This is an honest zero: nothing was found, and nothing was inferred.
+limits: []
+headers_observed: []
+searched:
+- {url: 'https://kuli.one/sitemap.xml', status: 200, note: 'no developer or documentation URL among 66 entries'}
+- {url: 'https://kuli.one/docs', status: 200, note: 'soft 404 — Framer SPA catch-all returns the homepage'}
+- {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/', status: 200, note: 'no rate-limit headers on the anonymous root response'}
+- {url: 'https://kuli-discovery-backend-prod.livelyocean-00d2887a.westeurope.azurecontainerapps.io/api/settings/profile', status: 401, note: 'no rate-limit headers on the 401'}

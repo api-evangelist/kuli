@@ -8,6 +8,17 @@ description: Kuli is an AI agent for influencer marketing, built for consumer br
   voice and reports campaign ROI on a schedule. Founded in 2025 and headquartered in Levallois-Perret, Paris,
   Kuli is a Y Combinator company. As of this profile Kuli publishes no public API, developer portal, or SDKs —
   its only machine-readable surface is an llms.txt.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown

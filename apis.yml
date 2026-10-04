@@ -49,7 +49,7 @@ tags:
 - Creator Economy
 - Brand Safety
 - Video Analysis
-- Social-Media
+- Social Media
 tags_raw:
 - Company
 - Influencer Marketing
@@ -59,6 +59,7 @@ tags_raw:
 - Brand Safety
 - Video Analysis
 - Social Media
+- Social-Media
 apis: []
 common:
 - type: DomainSecurity

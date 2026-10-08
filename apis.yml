@@ -62,6 +62,10 @@ tags_raw:
 - Social-Media
 apis: []
 common:
+- type: Plans
+  url: plans/kuli-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/kuli-rate-limits.yml
 - type: DomainSecurity
   url: security/kuli-domain-security.yml
 - type: Website
